@@ -1,0 +1,30 @@
+{
+  "name": "link-scraper",
+  "version": "1.0.0",
+  "description": "This npm package will provide an easy way to scrap links from a page in an array. This also advances the fact by getting all internal or all external links from a page",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JDchauhan/link-scraper.git"
+  },
+  "keywords": [
+    "link",
+    "scraper",
+    "internal",
+    "external",
+    "scrapping"
+  ],
+  "author": "Jagdish Singh <Jagdish.chauhan01@gmail.com> (https://JDchauhan.github.io)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JDchauhan/link-scraper/issues"
+  },
+  "homepage": "https://github.com/JDchauhan/link-scraper#readme",
+  "dependencies": {
+    "cheerio": "^1.0.0-rc.2",
+    "request": "^2.87.0"
+  }
+}
