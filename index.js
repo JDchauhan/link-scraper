@@ -28,3 +28,17 @@ function getAllLinks(url,callback) {
         });
     });
 }
+
+function removeSamePageLinks(urls, pageUrl) {
+    var index = 0;
+    urls.forEach(url => {
+        for (var name in url) {
+            var link = url[name];
+            if (link.indexOf("#") !== -1 && link.indexOf(pageUrl) !== -1) {
+                urls.splice(index, 1);
+            }
+        }
+        index++;
+    });
+    return urls;
+}
