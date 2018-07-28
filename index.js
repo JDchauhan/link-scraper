@@ -7,6 +7,8 @@ function getAllLinks(url, callback) {
     var baseUrl = url.split("/");
     baseUrl = baseUrl[0] + "//" + baseUrl[2];
     request(url, function (err, resp, body) {
+        var count = 0;
+        var isExist = false;
         $ = cheerio.load(body);
         links = $('a'); //jquery get all hyperlinks
         $(links).each(function (i, link) {
@@ -19,10 +21,23 @@ function getAllLinks(url, callback) {
             if (link.indexOf("?") === 0 || link.indexOf("#") === 0) {
                 link = url + link;
             }
-            obj[name] = link;
-            urls.push(obj);
-            obj = {};
-            if (links.length === urls.length) {
+            for(var i = 0; i < urls.length; i++){
+                var key = Object.keys(urls[i]); 
+                if(urls[i][key] === link){
+                    isExist = true;
+                    count++;
+                    break;
+                }
+            }
+            if(!isExist){
+                obj[name] = link;
+                urls.push(obj);
+                obj = {};
+            } else {
+                isExist = false;
+            }
+
+            if (links.length === urls.length + count) {
                 callback(urls);
             }
         });
