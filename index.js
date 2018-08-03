@@ -22,15 +22,15 @@ function getAllLinks(url, callback) {
                 link = url + link;
             }
             for(var i = 0; i < urls.length; i++){
-                var key = Object.keys(urls[i]); 
-                if(urls[i][key] === link){
+                if(urls[i].url === link || link === ""){
                     isExist = true;
                     count++;
                     break;
                 }
             }
             if(!isExist){
-                obj[name] = link;
+                obj.name = name;
+                obj.url = link;
                 urls.push(obj);
                 obj = {};
             } else {
@@ -44,23 +44,25 @@ function getAllLinks(url, callback) {
     });
 }
 
-function removeSamePageLinks(urls, pageUrl) {
-    var index = 0;
-    urls.forEach(url => {
-        for (var name in url) {
-            var link = url[name];
-            if (link.indexOf("#") !== -1 && link.indexOf(pageUrl) !== -1) {
-                urls.splice(index, 1);
+function removeSamePageLinks(urls) {
+    for(let i = 0; i < urls.length; i++ ){
+        urls[i].url = urls[i].url.split("#")[0];
+    }
+
+    for(let i = 0; i < urls.length; i++){
+        for(j = i + 1; j < urls.length; j++){
+            if(urls[i].url === urls[j].url){
+                urls.splice(j, 1);
+                j--;
             }
         }
-        index++;
-    });
+    }
     return urls;
 }
 
 function getAllLinksExcludeSamePage(url, callback) {
     getAllLinks(url, function (urls) {
-        var newUrls = removeSamePageLinks(urls, url);
+        var newUrls = removeSamePageLinks(urls);
         return callback(newUrls);
     });
 }

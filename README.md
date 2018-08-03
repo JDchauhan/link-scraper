@@ -45,12 +45,11 @@ Example:
 
 * Parameters: 
     1. urls (array of objects having values as link)
-    2. pageLink is url of page to which we have remove internal links.
-
+    
 * Results
 Array of object containg keys as text of link(if available, blank otherwise) and value as url (same as first parameter except that some objects are removed)
 
-    removeSamePageLinks(urls, pageLink)
+    removeSamePageLinks(urls)
 
 Example:
 
