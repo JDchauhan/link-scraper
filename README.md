@@ -33,11 +33,11 @@ Link Scraper will intend to offer all type of link scraping in future to help de
 * Results
 Array of object containg keys as text of link(if available, blank otherwise) and value as url
 
-    getAllLinks(url,[callback])
+    linkScraper.getAllLinks(url,[callback])
 
 Example:
 
-    getAllLinks("https://www.npmjs.com/", function(urls){
+    linkScraper.getAllLinks("https://www.npmjs.com/", function(urls){
         //write your code here
     })
 
@@ -49,7 +49,7 @@ Example:
 * Results
 Array of object containg keys as text of link(if available, blank otherwise) and value as url (same as first parameter except that some objects are removed)
 
-    removeSamePageLinks(urls)
+    linkScraper.removeSamePageLinks(urls)
 
 Example:
 
@@ -59,7 +59,7 @@ Example:
         "test3": "https://www.npmjs.com/#test";
         
     }];
-    console.log(removeSamePageLinks(, "https://www.npmjs.com"))
+    console.log(linkScraper.removeSamePageLinks(, "https://www.npmjs.com"))
     
 Output: 
 
@@ -75,11 +75,46 @@ Output:
 * Results
 Array of object containg keys as text of link(if available, blank otherwise) and value as url (same as first parameter with some objects having internal links are removed)
 
-    getAllLinksExcludeSamePage(url, [callback])
+    linkScraper.getAllLinksExcludeSamePage(url, [callback])
 
 Example:
 
-    getAllLinksExcludeSamePage("https://www.npmjs.com/", function (urls) {
+    linkScraper.getAllLinksExcludeSamePage("https://www.npmjs.com/", function (urls) {
+        //your code here
+    });
+
+#### Get Internal Links:
+
+* Parameters: 
+    1. url
+    2. callback function (optional)
+
+* Results
+Array of object containg keys as text of link(if available, blank otherwise) and value as url of all the internal links of the page you have searched
+
+    linkScraper.getInternalLinks(url, [callback])
+
+Example:
+
+    linkScraper.getInternalLinks("https://www.npmjs.com/", function (urls) {
+        //your code here
+    });
+
+
+#### Get External Links:
+
+* Parameters: 
+    1. url
+    2. callback function (optional)
+
+* Results
+Array of object containg keys as text of link(if available, blank otherwise) and value as url of all the external links of the page you have searched
+
+    linkScraper.getExternalLinks(url, [callback])
+
+Example:
+
+    linkScraper.getExternalLinks("https://www.npmjs.com/", function (urls) {
         //your code here
     });
 
