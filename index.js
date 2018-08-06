@@ -61,8 +61,20 @@ module.exports.removeSamePageLinks = function(urls) {
 }
 
 module.exports.getAllLinksExcludeSamePage = function (url, callback) {
-    getAllLinks(url, function (urls) {
+    module.exports.getAllLinks(url, function (urls) {
         var newUrls = removeSamePageLinks(urls);
         return callback(newUrls);
     });
 }
+
+module.exports.getExternalLinks = function (url, callback){
+    module.exports.getAllLinks(url, function (urls) {
+        for(let i = 0; i < urls.length; i++){
+            if(urls[i].url.indexOf(url) !== -1){
+                urls.splice(i, 1);
+                i--;
+            }
+        }   
+        return callback(urls);
+    });
+};
