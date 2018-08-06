@@ -78,3 +78,15 @@ module.exports.getExternalLinks = function (url, callback){
         return callback(urls);
     });
 };
+
+module.exports.getInternalLinks = function (url, callback){
+    module.exports.getAllLinks(url, function (urls) {
+        for(let i = 0; i < urls.length; i++){
+            if(urls[i].url.indexOf(url) === -1){
+                urls.splice(i, 1);
+                i--;
+            }
+        }   
+        return callback(urls);
+    });
+};
