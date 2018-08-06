@@ -1,7 +1,7 @@
 var request = require('request');
 var cheerio = require('cheerio');
 
-function getAllLinks(url, callback) {
+module.exports.getAllLinks = function(url, callback) {
     var urls = [];
     var obj = {};
     var baseUrl = url.split("/");
@@ -44,7 +44,7 @@ function getAllLinks(url, callback) {
     });
 }
 
-function removeSamePageLinks(urls) {
+module.exports.removeSamePageLinks = function(urls) {
     for(let i = 0; i < urls.length; i++ ){
         urls[i].url = urls[i].url.split("#")[0];
     }
@@ -60,7 +60,7 @@ function removeSamePageLinks(urls) {
     return urls;
 }
 
-function getAllLinksExcludeSamePage(url, callback) {
+module.exports.getAllLinksExcludeSamePage = function (url, callback) {
     getAllLinks(url, function (urls) {
         var newUrls = removeSamePageLinks(urls);
         return callback(newUrls);
