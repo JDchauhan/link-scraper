@@ -14,12 +14,14 @@ module.exports.getAllLinks = function(url, callback) {
         $(links).each(function (i, link) {
             var name = $(link).text();
             var link = $(link).attr('href');
-            if (link.indexOf("/") === 0) {
-                link = baseUrl + link;
-            }
+            if (link !== undefined) {
+                if (link.indexOf("/") === 0) {
+                    link = baseUrl + link;
+                }
 
-            if (link.indexOf("?") === 0 || link.indexOf("#") === 0) {
-                link = url + link;
+                if (link.indexOf("?") === 0 || link.indexOf("#") === 0) {
+                    link = url + link;
+                }
             }
             for(var i = 0; i < urls.length; i++){
                 if(urls[i].url === link || link === ""){
